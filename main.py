@@ -1,5 +1,5 @@
 from itertools import permutations
-from typing import Any, Dict, List
+from typing import Any
 
 import enchant
 
