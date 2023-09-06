@@ -7,16 +7,8 @@ import enchant
 class GenerateWords:
 	letters: list = []
 
-	def get_letter(self):
-		letters = input("Enter Your Letters:- ")
-		if not letters:
-			print("Input Must be a number")
-			self.get_letter()
+	def make_letter_to_list(self, letters: str):
 		letter_dict = []
-		if len(letters) > 6:
-			print("Letters Cannot be More than 6")
-			self.get_letter()
-
 		for letter in letters:
 			letter_dict.append(letter)
 
@@ -36,7 +28,7 @@ class GenerateWords:
 	def check_valid_words(self, words: list[str]) -> list[str]:
 		enchant_obj = enchant.DictWithPWL(
 			tag="en_UK",
-			pwl="dictionary.txt"
+			pwl="assets/dictionary.txt"
 		)
 
 		correct_words = []
@@ -60,27 +52,11 @@ class GenerateWords:
 			length = len(word)
 			formatted_words[f"{length}"].append(word)
 
-		return formatted_words
+		return dict(reversed(list(formatted_words.items())))
 
-	def retry(self):
-		is_retry = input("Do you want to Try Again. ? y/n :- ")
-
-		if not is_retry:
-			self.retry()
-
-		if is_retry == "n" or is_retry == 'N':
-			exit(1)
-
-		if is_retry == "y" or is_retry == "Y":
-			self.main()
-
-		self.retry()
-
-	def main(self):
-		self.get_letter()
+	def main(self, letters: str) -> dict:
+		self.make_letter_to_list(letters=letters)
 		possible_words = self.make_words()
 		correct_words = self.check_valid_words(possible_words)
-		formatted_words = self.format_words_by_length(correct_words)
-		print(formatted_words)
 
-		self.retry()
+		return self.format_words_by_length(correct_words)
