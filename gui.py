@@ -6,8 +6,8 @@ from GenerateWords import GenerateWords
 
 def solve_puzzle():
 	user_input = entry.get()
-	if len(user_input) > 6:
-		input_error.config(text="Letters Must not be greater than 6")
+	if len(user_input) > 7:
+		input_error.config(text="Letters Must not be greater than 7")
 	elif not user_input:
 		input_error.config(text="Please Enter Letters")
 	else:
