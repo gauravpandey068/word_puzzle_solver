@@ -12,13 +12,13 @@ def solve_puzzle():
 		input_error.config(text="Please Enter Letters")
 	else:
 		input_error.config(text="")
-		# Clear the previous content in result_text
-		result_text.delete("1.0", "end")
 		generated_words = GenerateWords()
 		results = generated_words.main(letters=user_input)
 
 		# Set state to "normal" to enable editing
 		result_text.config(state="normal")
+		# Clear the previous content in result_text
+		result_text.delete("1.0", "end")
 		# Display the formatted dictionary content
 		for key, value in results.items():
 			result_text.insert("end", f'{key}-letter words:\n')
