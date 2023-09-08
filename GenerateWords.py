@@ -18,7 +18,7 @@ class GenerateWords:
 		length_of_letters = len(self.letters)
 
 		words = []
-		for r in range(1, length_of_letters):
+		for r in range(2, length_of_letters):
 			letter_permutations = permutations(self.letters, r + 1)
 			word_by_length = [''.join(permutation) for permutation in letter_permutations]
 			words.extend(word_by_length)
